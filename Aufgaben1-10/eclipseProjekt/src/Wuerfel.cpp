@@ -1,13 +1,15 @@
 /*
-    wuerfel.cpp definiert einen W�rfel �ber seine 6 Seiten
+    wuerfel.cpp definiert einen Würfel über seine 6 Seiten
     Last Update:  13.10.2011   W.-D. Groch
-*/ 
+*/
 #include <GL/freeglut.h>
+#include <time.h>
+#include <unistd.h>
 #include "Wuerfel.h"
 
 
 void Wuerfel(GLfloat fSeitenL)
-{ 
+{
 	glBegin(GL_POLYGON);   //Vorderseite
 	glColor4f(1.0f,0.0f,0.0f,1.0f);	//ROT
 	glVertex3f(-fSeitenL/2.0f,-fSeitenL/2.0f,+fSeitenL/2.0f);
@@ -18,6 +20,8 @@ void Wuerfel(GLfloat fSeitenL)
 	glColor4f(1.0f,0.0f,1.0f,1.0f); //MAGENTA
 	glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,+fSeitenL/2.0f);
 	glEnd();
+//	glutSwapBuffers();
+//	sleep(1); //nach diesem Experiment beides wieder entfernen!!!
 
 
 	glBegin(GL_POLYGON);   //Rechte Seite
@@ -30,6 +34,8 @@ void Wuerfel(GLfloat fSeitenL)
 	glColor4f(1.0f,1.0f,1.0f,1.0f); //WEISS
 	glVertex3f(+fSeitenL/2.0f,+fSeitenL/2.0f,+fSeitenL/2.0f);
 	glEnd();
+//	glutSwapBuffers();
+//	sleep(1); //nach diesem Experiment beides wieder entfernen!!!
 
 
 	glBegin(GL_POLYGON);   //Rueckseite
@@ -42,6 +48,8 @@ void Wuerfel(GLfloat fSeitenL)
 	glColor4f(0.0f,0.0f,1.0f,1.0f); //BLAU
 	glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,-fSeitenL/2.0f);
 	glEnd();
+//	glutSwapBuffers();
+//	sleep(1); //nach diesem Experiment beides wieder entfernen!!!
 
 
 	glBegin(GL_POLYGON);   //Linke Seite
@@ -49,7 +57,7 @@ void Wuerfel(GLfloat fSeitenL)
 	glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,-fSeitenL/2.0f);
 	glColor4f(0.0f,0.0f,0.0f,1.0f); //SCHWARZ
 	glVertex3f(-fSeitenL/2.0f,-fSeitenL/2.0f,-fSeitenL/2.0f);
-	glColor4f(1.0f,0.0f,0.0f,1.0f); //ROT	
+	glColor4f(1.0f,0.0f,0.0f,1.0f); //ROT
 	glVertex3f(-fSeitenL/2.0f,-fSeitenL/2.0f,+fSeitenL/2.0f);
 	glColor4f(1.0f,0.0f,1.0f,1.0f); //MAGENTA
 	glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,+fSeitenL/2.0f);

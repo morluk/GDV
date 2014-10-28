@@ -11,6 +11,8 @@
 #include <GL/freeglut.h>         //laedt auch glut.h und gl.h
 #include <math.h>
 #include "Wuerfel.h"
+#include "Tisch.h"
+#include "Tischplatte.h"
 
 GLfloat extent = 1.0; // Mass fuer die Ausdehnungdes Modells
 
@@ -29,7 +31,9 @@ void RenderScene(void)
 // Hier befindet sich der Code der in jedem frame ausgefuehrt werden muss
    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// was loeschen?
    glLoadIdentity ();
-   Wuerfel(extent);
+   gluLookAt(5.0*extent, 5.0*extent, 10.0*extent, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Kamera-
+   // sicht von wo?
+   Tisch (extent);
    glutSwapBuffers();
 }
 
@@ -40,7 +44,7 @@ void Reshape(int width,int height)
 	glMatrixMode(GL_PROJECTION); // Matrix für Transf.: Frustum->Viewport
 	glLoadIdentity();
 	glViewport(0,0,width,height);
-	glOrtho(-extent,+extent,-extent,+extent,-extent,+extent); // Frustum
+	glOrtho(-extent*2.0,+extent*2.0,-extent*2.0,+extent*2.0,0.0,+20.0*extent); //Frustum
 	glMatrixMode(GL_MODELVIEW); // Modellierungs-/Viewing-Matrix
 }
 
@@ -64,7 +68,7 @@ int main(int argc, char **argv)
    glutInit ( &argc, argv );
    glutInitDisplayMode ( GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH );
    glutInitWindowSize ( 600,600 );
-   glutCreateWindow ("*** WuerfelRYWM zu sehen");
+   glutCreateWindow ("*** LookAtTisch zu sehen");
    glutDisplayFunc ( RenderScene );
    glutReshapeFunc ( Reshape );
    // TimerCallback registrieren; wird nach 10 msec aufgerufen mit Parameter 0

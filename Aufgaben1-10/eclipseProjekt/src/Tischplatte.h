@@ -1,0 +1,1 @@
+void Tischplatte( GLfloat fSeitenL );

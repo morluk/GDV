@@ -11,8 +11,13 @@
 #include <GL/freeglut.h>         //laedt auch glut.h und gl.h
 #include <math.h>
 #include "Wuerfel.h"
+#include "Tisch.h"
+#include "Tischplatte.h"
+#include "Boden.h"
 
 GLfloat extent = 1.0; // Mass fuer die Ausdehnungdes Modells
+GLfloat hoehe = 0.0; //steuert die Auf- und Abwärtsbewegung des Tisches
+GLfloat virthoehe = 0.0; //steuert die Auf- und Abwärtsbewegung des Tisches
 
 
 void Init()
@@ -29,7 +34,12 @@ void RenderScene(void)
 // Hier befindet sich der Code der in jedem frame ausgefuehrt werden muss
    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// was loeschen?
    glLoadIdentity ();
-   Wuerfel(extent);
+   gluLookAt(5.0*extent, 5.0*extent, 10.0*extent, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Kamera-
+   // sicht von wo?
+   glTranslatef( 0.0f, hoehe, 0.0f );
+   Boden (extent);
+   glClear (GL_DEPTH_BUFFER_BIT);
+   Tisch (extent);
    glutSwapBuffers();
 }
 
@@ -40,7 +50,7 @@ void Reshape(int width,int height)
 	glMatrixMode(GL_PROJECTION); // Matrix für Transf.: Frustum->Viewport
 	glLoadIdentity();
 	glViewport(0,0,width,height);
-	glOrtho(-extent,+extent,-extent,+extent,-extent,+extent); // Frustum
+	glOrtho(-extent*2.0,+extent*2.0,-extent*2.0,+extent*2.0,0.0,+20.0*extent); //Frustum
 	glMatrixMode(GL_MODELVIEW); // Modellierungs-/Viewing-Matrix
 }
 
@@ -50,7 +60,12 @@ void Animate (int value)
 	// erforderlich sind. Dieser Prozess laeuft im Hintergrund und wird alle
 	// wait_msec msec aufgerufen. Der Parameter "value" wird einfach nur um
 	// eins inkrementiert und dem Callback wieder uebergeben.
-	std::cout << "value=" << value << std::endl;
+	static GLfloat richtung = 1.0;
+	virthoehe = virthoehe + (float) 0.005*richtung;
+	if ( virthoehe >= -extent && virthoehe <= extent) hoehe = virthoehe;
+	if ( virthoehe <= -0.5*extent) richtung = +1.0;
+	if ( virthoehe >= 1.0*extent) hoehe = extent;
+	if ( virthoehe >= 1.5*extent) richtung = -1.0;
    // RenderScene aufrufen.
    glutPostRedisplay();
    // Timer wieder registrieren - Animate wird so nach 10 msec mit value+=1 aufgerufen.
@@ -64,7 +79,7 @@ int main(int argc, char **argv)
    glutInit ( &argc, argv );
    glutInitDisplayMode ( GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH );
    glutInitWindowSize ( 600,600 );
-   glutCreateWindow ("*** WuerfelRYWM zu sehen");
+   glutCreateWindow ("*** TischleinDeckDich zu sehen");
    glutDisplayFunc ( RenderScene );
    glutReshapeFunc ( Reshape );
    // TimerCallback registrieren; wird nach 10 msec aufgerufen mit Parameter 0

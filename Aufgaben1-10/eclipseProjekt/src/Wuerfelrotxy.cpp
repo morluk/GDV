@@ -29,7 +29,9 @@ void RenderScene(void)
 // Hier befindet sich der Code der in jedem frame ausgefuehrt werden muss
    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// was loeschen?
    glLoadIdentity ();
-   Wuerfel(extent);
+   glRotatef ( 20.0, 1.0, 0.0, 0.0 ); //Rotation um +20 Grad um welche Achse? x
+   glRotatef ( 30.0, 0.0, 1.0, 0.0 ); //Rotation um +30 Grad um welche Achse? y
+   Wuerfel (extent);
    glutSwapBuffers();
 }
 
@@ -64,7 +66,7 @@ int main(int argc, char **argv)
    glutInit ( &argc, argv );
    glutInitDisplayMode ( GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH );
    glutInitWindowSize ( 600,600 );
-   glutCreateWindow ("*** WuerfelRYWM zu sehen");
+   glutCreateWindow ("*** Wuerfelrotxy zu sehen");
    glutDisplayFunc ( RenderScene );
    glutReshapeFunc ( Reshape );
    // TimerCallback registrieren; wird nach 10 msec aufgerufen mit Parameter 0

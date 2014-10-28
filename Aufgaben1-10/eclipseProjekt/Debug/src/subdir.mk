@@ -4,20 +4,23 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/MeinTisch.cpp \
+../src/Boden.cpp \
 ../src/Tisch.cpp \
+../src/TischleinDeckDich.cpp \
 ../src/Tischplatte.cpp \
 ../src/Wuerfel.cpp 
 
 OBJS += \
-./src/MeinTisch.o \
+./src/Boden.o \
 ./src/Tisch.o \
+./src/TischleinDeckDich.o \
 ./src/Tischplatte.o \
 ./src/Wuerfel.o 
 
 CPP_DEPS += \
-./src/MeinTisch.d \
+./src/Boden.d \
 ./src/Tisch.d \
+./src/TischleinDeckDich.d \
 ./src/Tischplatte.d \
 ./src/Wuerfel.d 
 
