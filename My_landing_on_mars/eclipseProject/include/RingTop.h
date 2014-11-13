@@ -1,0 +1,1 @@
+void RingTop(GLfloat extent);
