@@ -6,8 +6,8 @@
 #include "Ring.h"
 
 /*
- * draws rocket at origin with lower radius 1.5 * extent and top radius 0.1 * extent
- * height is 4 * extent. Up is pos y axis.
+ * draws rocket at origin with lower radius 1.5/4 * extent and top radius 0.1/4 * extent
+ * height is extent. Up is pos y axis.
  */
 
 void Rakete(GLfloat KL, GLfloat ringAngle) {
