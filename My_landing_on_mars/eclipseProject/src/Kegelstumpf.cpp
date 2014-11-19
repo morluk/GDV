@@ -9,27 +9,23 @@
 
 void Kegelstumpf(GLfloat extent, GLfloat proportion) {
 	//Upper cirlce
-	float xpl[74], zpl[74];
+	float xpl[73], zpl[73];
 
-	xpl[0] = 0.0;
-	zpl[0] = 0.0;
-	for (int i = 1; i <= 73; ++i) {
+	for (int i = 0; i < 73; ++i) {
 		xpl[i] = extent * (float)sin ( 6.28318530718*(i-1)/72.0 );
 		zpl[i] = extent * (float)cos ( 6.28318530718*(i-1)/72.0 );
 	}
 
 	//Lower circle
-	float xpm[74], zpm[74];
+	float xpm[73], zpm[73];
 
-	xpm[0] = 0.0;
-	zpm[0] = 0.0;
-	for (int i = 1; i <= 73; ++i) {
+	for (int i = 0; i < 73; ++i) {
 		xpm[i] = extent * proportion * (float)sin ( 6.28318530718*(i-1)/72.0 );
 		zpm[i] = extent * proportion * (float)cos ( 6.28318530718*(i-1)/72.0 );
 	}
 
 	glBegin(GL_QUAD_STRIP);
-	for (int i = 1; i <= 73; i++) {
+	for (int i = 0; i < 73; i++) {
 		glVertex3f(xpl[i], extent, zpl[i]);
 		glVertex3f(xpm[i], 0.0, zpm[i]);
 	}
