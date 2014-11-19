@@ -1,13 +1,13 @@
 #include <GL/freeglut.h>
 #include <math.h>
-#include "Kegelstumpf.h"
+#include "Cone.h"
 
 /*
  * zeichnet Kegelstumpf in x-z Ebene um Ursprung mit unterem Radius = extent * proportion
  * und mit Höhe extent. Oberer Radius des Kegelstumpfs ist extent.
  */
 
-void Kegelstumpf(GLfloat extent, GLfloat proportion) {
+void Cone(GLfloat extent, GLfloat proportion) {
 	//Upper cirlce
 	float xpl[73], zpl[73];
 

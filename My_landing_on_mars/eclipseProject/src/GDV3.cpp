@@ -2,7 +2,7 @@
 #include <GL/freeglut.h>
 #include "global.h"
 #include "standards.h"
-#include "Rakete.h"
+#include "Rocket.h"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ void renderScene() {
 	if (currentMode == ROCKET_LANDING) {
 		//Rackete zeichnen
 		glRotatef(_angle,1.0f,0.0f,0.0f);
-		Rakete (extent,_ringAngle);
+		Rocket (extent,_ringAngle);
 		//Test:
 		cout << "Rackete bei " << _rocketHeight << endl;
 	} else if (currentMode == ROCKET_STARTING) {
@@ -30,7 +30,7 @@ void renderScene() {
 		cout << "Rackete bei " << _rocketHeight << endl;
 	} else if (currentMode == IDLE_START) {
 		//Rakete zeichen
-		Rakete(extent,_ringAngle);
+		Rocket(extent,_ringAngle);
 		//Test:
 		cout << "IDLE_START" << endl;
 	}

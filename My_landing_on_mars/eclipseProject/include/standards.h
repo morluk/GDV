@@ -1,6 +1,6 @@
 //Window standards
 const int WINDOW_WIDTH = 600;
-const int WINDOW_HEIGHT = 600;
+const int WINDOW_HEIGHT = 480;
 const char* WINDOW_TITLE = "*** Rakete zu sehen";
 const int ANIMATE_WAIT_MSEC = 10;
 
