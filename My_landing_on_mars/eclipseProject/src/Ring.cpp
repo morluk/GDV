@@ -1,7 +1,6 @@
 #include <GL/freeglut.h>
 #include <math.h>
-#include "Vector3d.h"
-#include "Kegelstumpf.h"
+#include "RingSide.h"
 #include "RingTop.h"
 #include "Ring.h"
 
@@ -21,8 +20,8 @@ void Ring(GLfloat extent, GLfloat angle) {
 
 	glPushMatrix();	//remember position
 	glScalef(1.0f,0.2f,1.0f);	//flatten Ring height
-	Kegelstumpf(extent, 1.0f);		//cylinder outside
+	RingSide(extent);		//cylinder outside
 	glScalef(0.9f,1.0f,0.9f);
-	Kegelstumpf(extent, 1.0f);		//cylinder inside
+	RingSide(extent);		//cylinder inside
 	glPopMatrix(); // go back
 }

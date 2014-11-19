@@ -14,6 +14,7 @@ void Rakete(GLfloat KL, GLfloat ringAngle) {
 	glPushMatrix();
 	glScalef(0.25f,0.25f,0.25f);
 
+	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);	//BLAU
 	//Raketenspitze
 	glPushMatrix();			// remember where you are
 	glScalef(0.1f,1.0f,0.1f);
@@ -31,12 +32,14 @@ void Rakete(GLfloat KL, GLfloat ringAngle) {
 	glPopMatrix();
 
 	//Raketentriebwerke
+	glColor4f(0.0f, 1.0f, 0.0f, 1.0f); //GRUEN
 	glPushMatrix();
 	Kegelstumpf(KL, 1.5f);
 	Circle(KL*1.5f,-1.0f);
 	glPopMatrix();
 
 	//Ringkörper
+	glColor4f(1.0f,0.0f,0.0f,1.0f);	//ROT
 	glPushMatrix();
 	glScalef(1.5f,1.0f,1.5f);
 	glTranslatef(0.0f,2.0f*KL,0.0f);
