@@ -33,7 +33,7 @@ void Rocket(GLfloat KL, GLfloat ringAngle, GLfloat legAngle) {
 	glPopMatrix();
 
 	//Rocket blast pipe
-	glColor4f(0.0f, 1.0f, 0.0f, 1.0f); //GREEN
+	glColor4f(0.0f,1.0f,1.0f,1.0f);	//CYAN
 	glPushMatrix();
 	Cone(KL, 1.5f);		//draws cone with upper radius extent and lower radius 1.5 * extent and height extent
 	Circle(KL*1.5f);	//draws circle with radius 1.5 * extent
@@ -54,15 +54,15 @@ void Rocket(GLfloat KL, GLfloat ringAngle, GLfloat legAngle) {
 	glTranslatef(0.8*KL,0.0f,0.8*KL);	//translate leg to position
 	glRotatef(-legAngle,0.0f,0.0f,1.0f);
 	glTranslatef(0.0f,-0.5f*KL,0.0f);	//translate top of cube to y = 0
-	glScalef(0.1f,1.0f,0.1f);	//scale width (x,z) to 0.1 * extent
+	glScalef(0.2f,1.0f,0.2f);	//scale width (x,z) to 0.1 * extent
 	Cube(KL);	//draw cube as first leg
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(-0.8*KL,0.0f,0.8*KL);	//translate leg to position
+	glTranslatef(-0.8*KL,0.0f,0.6*KL);	//translate leg to position
 	glRotatef(legAngle,0.0f,0.0f,1.0f);
 	glTranslatef(0.0f,-0.5f*KL,0.0f);	//translate top of cube to y = 0
-	glScalef(0.1f,1.0f,0.1f);	//scale width (x,z) to 0.1 * extent
+	glScalef(0.2f,1.0f,0.2f);	//scale width (x,z) to 0.1 * extent
 	Cube(KL);	//draw cube as second leg
 	glPopMatrix();
 
@@ -70,15 +70,15 @@ void Rocket(GLfloat KL, GLfloat ringAngle, GLfloat legAngle) {
 	glTranslatef(0.8*KL,0.0f,-0.8*KL);	//translate leg to position
 	glRotatef(-legAngle,0.0f,0.0f,1.0f);
 	glTranslatef(0.0f,-0.5f*KL,0.0f);	//translate top of cube to y = 0
-	glScalef(0.1f,1.0f,0.1f);	//scale width (x,z) to 0.1 * extent
+	glScalef(0.2f,1.0f,0.2f);	//scale width (x,z) to 0.1 * extent
 	Cube(KL);	//draw cube as third leg
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(-0.8*KL,0.0f,-0.8*KL);	//translate leg to position
+	glTranslatef(-0.8*KL,0.0f,-0.6*KL);	//translate leg to position
 	glRotatef(legAngle,0.0f,0.0f,1.0f);
 	glTranslatef(0.0f,-0.5f*KL,0.0f);	//translate top of cube to y = 0
-	glScalef(0.1f,1.0f,0.1f);	//scale width (x,z) to 0.1 * extent
+	glScalef(0.2f,1.0f,0.2f);	//scale width (x,z) to 0.1 * extent
 	Cube(KL);	//draw cube as fourth leg
 	glPopMatrix();
 
