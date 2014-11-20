@@ -11,6 +11,7 @@ enum Mode {
 
 //Timer Standards
 const int TIMER_ARRAY[4] = {5000, 10000, 5000, 10000};
+const int TIMER_ARRAY_LENGTH = 4;
 
 //const int START_IDLE_TIME = 5000;
 //const int ROCKET_LANDING_TIME = 10000;

@@ -1,2 +1,1 @@
-void RingSide( float extent );
-//TODO: GLfloat
+void RingSide( GLfloat extent );

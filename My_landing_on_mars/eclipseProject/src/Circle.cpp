@@ -7,7 +7,7 @@
  * in x-z Ebene. Orientierung der Normalen: 1.0 nach oben, -1.0 nach unten (um zu wissen wo aussen ist)
  */
 
-void Circle(GLfloat extent, GLfloat orientation) {
+void Circle(GLfloat extent) {
 
 	float xpl[74], zpl[74];
 

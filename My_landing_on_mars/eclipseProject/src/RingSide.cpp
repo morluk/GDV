@@ -1,6 +1,6 @@
-#include "RingSide.h"
 #include <GL/freeglut.h>
 #include <math.h>
+#include "RingSide.h"
 
 void RingSide(GLfloat extent) {
 

@@ -1,1 +1,1 @@
-void Ring(GLfloat extent, GLfloat angle);
+void Ring(GLfloat extent);

@@ -1,1 +1,1 @@
-void Circle(GLfloat extent, GLfloat orientation);
+void Circle(GLfloat extent);

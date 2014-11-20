@@ -9,8 +9,7 @@
  * height is 0.2 * extent. Up is y axis.
  */
 
-void Ring(GLfloat extent, GLfloat angle) {
-	glRotatef(angle,0.0f,1.0f,0.0f);
+void Ring(GLfloat extent) {
 
 	glPushMatrix();
 	RingTop(extent);

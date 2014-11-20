@@ -17,22 +17,30 @@ void init() {
 void renderScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	gluLookAt(5.0*extent, 5.0*extent, 10.0*extent, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Kamerasicht
-	if (currentMode == ROCKET_LANDING) {
-		//Rackete zeichnen
-		glRotatef(_angle,1.0f,0.0f,0.0f);
-		Rocket (extent,_ringAngle);
-		//Test:
-		cout << "Rackete bei " << _rocketHeight << endl;
-	} else if (currentMode == ROCKET_STARTING) {
-		//Rackete zeichnen
-		//Test:
-		cout << "Rackete bei " << _rocketHeight << endl;
-	} else if (currentMode == IDLE_START) {
+	gluLookAt(5.0 * extent, 5.0 * extent, 10.0 * extent, 0.0, 0.0, 0.0, 0.0,
+			1.0, 0.0); // Kamerasicht
+	if (currentMode == IDLE_START) {
 		//Rakete zeichen
-		Rocket(extent,_ringAngle);
+		glRotatef(_angle, 1.0f, 0.0f, 0.0f);
+		Rocket(extent, _ringAngle, _legAngle);
 		//Test:
 		cout << "IDLE_START" << endl;
+	} else if (currentMode == ROCKET_LANDING) {
+		//Rackete zeichnen
+		Rocket(extent, _ringAngle, _legAngle);
+		//Test:
+		cout << "Rackete bei " << _rocketHeight << endl;
+	} else if (currentMode == IDLE_LANDING) {
+		//Rakete zeichen
+		glRotatef(-_angle, 1.0f, 0.0f, 0.0f);
+		Rocket(extent, _ringAngle, _legAngle);
+		//Test:
+		cout << "IDLE_LANDING" << endl;
+	} else if (currentMode == ROCKET_STARTING) {
+		//Rackete zeichnen
+		Rocket(extent, _ringAngle, _legAngle);
+		//Test:
+		cout << "Rackete bei " << _rocketHeight << endl;
 	}
 	//Boden zeichnen
 	glutSwapBuffers();
@@ -51,7 +59,7 @@ void reshape(int width, int height) {
 
 void animate(int value) {
 	if (value == 0) {
-		currentMode = (Mode) (((int) currentMode) + 1);
+		currentMode = (Mode) ((((int) currentMode) + 1) % TIMER_ARRAY_LENGTH);
 		glutTimerFunc(ANIMATE_WAIT_MSEC, animate,
 				TIMER_ARRAY[currentMode] / ANIMATE_WAIT_MSEC);
 	} else {
@@ -60,22 +68,38 @@ void animate(int value) {
 
 	if (currentMode == ROCKET_LANDING) {
 		//values anpassen
-		if (_angle > 360)
-			_angle-=360;
-		_angle+=1.0f;
 		if (_ringAngle > 360)
 			_ringAngle-=360;
 		_ringAngle+=1.0f;
+		if (_legAngle < 90)
+			_legAngle +=1.0f;
 		//test:
 		_rocketHeight--;
 	}
 
 	if (currentMode == ROCKET_STARTING) {
 		//values anpassen
+		if (_ringAngle > 360)
+			_ringAngle-=360;
+		_ringAngle+=1.0f;
+		if (_legAngle < 90)
+			_legAngle -=1.0f;
 		_rocketHeight++;
 	}
 
 	if (currentMode == IDLE_START) {
+		if (_angle > 360)
+			_angle-=360;
+		_angle+=1.0f;
+		if (_ringAngle > 360)
+			_ringAngle-=360;
+		_ringAngle+=1.0f;
+	}
+
+	if (currentMode == IDLE_LANDING) {
+		if (_angle > 360)
+			_angle-=360;
+		_angle+=1.0f;
 		if (_ringAngle > 360)
 			_ringAngle-=360;
 		_ringAngle+=1.0f;

@@ -1,1 +1,1 @@
-void Rocket( GLfloat KL, GLfloat ringAngle );
+void Rocket( GLfloat KL, GLfloat ringAngle, GLfloat legAngle );
