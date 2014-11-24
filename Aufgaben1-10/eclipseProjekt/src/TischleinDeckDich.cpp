@@ -36,9 +36,9 @@ void RenderScene(void)
    glLoadIdentity ();
    gluLookAt(5.0*extent, 5.0*extent, 10.0*extent, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); // Kamera-
    // sicht von wo?
-   glTranslatef( 0.0f, hoehe, 0.0f );
    Boden (extent);
-   glClear (GL_DEPTH_BUFFER_BIT);
+   //glClear (GL_DEPTH_BUFFER_BIT);
+   glTranslatef( 0.0f, hoehe, 0.0f );
    Tisch (extent);
    glutSwapBuffers();
 }

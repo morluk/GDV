@@ -43,6 +43,7 @@ void Reshape(int width,int height)
 	glLoadIdentity();
 	glViewport(0,0,width,height);
 	glOrtho(-extent,+extent,-extent,+extent,-extent,+extent); // Frustum
+	//glFrustum(-extent,+extent,-extent,+extent,-extent,+extent);
 	glMatrixMode(GL_MODELVIEW); // Modellierungs-/Viewing-Matrix
 }
 
