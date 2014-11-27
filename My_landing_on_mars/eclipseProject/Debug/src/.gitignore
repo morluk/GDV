@@ -1,14 +1,2 @@
-/GDV3.o
-/Circle.d
-/Circle.o
-/GDV3.d
-/Kegelstumpf.d
-/Kegelstumpf.o
-/Rakete.d
-/Rakete.o
-/Ring.d
-/Ring.o
-/RingTop.d
-/RingTop.o
-/Vector3d.d
-/Vector3d.o
+/*.d
+/*.o
