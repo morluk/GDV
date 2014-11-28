@@ -1,3 +1,6 @@
+#ifndef STANDARDS
+#define STANDARDS
+
 //Window standards
 const int WINDOW_WIDTH = 600;
 const int WINDOW_HEIGHT = 480;
@@ -15,7 +18,20 @@ enum Mode {
 const int TIMER_ARRAY[4] = {2000, 5000, 2000, 5000};
 const int TIMER_ARRAY_LENGTH = 4;
 
-//const int START_IDLE_TIME = 5000;
-//const int ROCKET_LANDING_TIME = 10000;
-//const int LANDING_IDLE_TIME = 5000;
-//const int ROCKET_STARTING_TIME = 10000;
+//camera standards
+//TODO: uebersetzen :D
+//das sind die camera arrays. die haengen zusammen mit den modes. die reihenfolge ist:
+//start camera position
+//position sobald die rakete anfaengt zu landen
+//position wenn rakete gelandet ist
+//wenn rakete wieder anfaengt zu starten
+//wenn rakete fertig
+
+//destor kuerzer ein mode dauert desto schneller wechselt die kamera zur naechsten sicht.
+//somit haben wir hier freie auswahl und es ist einfach, falls mal ein mode hinzukommt.
+//die kamera einstellungen fand ich so mal ganz gut. koennen aber ja auch mal noch andere testen
+const GLfloat cameraXarray[5] = {	0, 		0, 		-2, 	2,		5	};
+const GLfloat cameraYarray[5] = {	5, 		5, 		5, 		2,		2	};
+const GLfloat cameraZarray[5] = {	5, 		15, 	5, 		5,		15	};
+
+#endif
