@@ -1,5 +1,6 @@
 #include <iostream>
 #include <GL/freeglut.h>
+#include <SOIL/SOIL.h>
 #include "global.h"
 #include "standards.h"
 #include "Rocket.h"
@@ -9,10 +10,22 @@ using namespace std;
 //cannot be placed in global.h Set currentMode for Start of Animation
 Mode currentMode = IDLE_START;
 
+GLuint mars;
+GLuint ringTexture;
+
 void init() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);	//BLACK
 	glEnable(GL_DEPTH_TEST);
 	glClearDepth(1.0f);
+	mars = SOIL_load_OGL_texture("images/mars.jpg", SOIL_LOAD_AUTO,
+					SOIL_CREATE_NEW_ID,
+					SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB
+							| SOIL_FLAG_COMPRESS_TO_DXT);
+
+	ringTexture = SOIL_load_OGL_texture("images/ring.jpg", SOIL_LOAD_AUTO,
+					SOIL_CREATE_NEW_ID,
+					SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB
+							| SOIL_FLAG_COMPRESS_TO_DXT);
 }
 
 void renderScene() {
@@ -22,39 +35,43 @@ void renderScene() {
 	gluLookAt(_cameraX, _cameraY, _cameraZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	glPushMatrix();
-	//Move upper point of Sphere to x=0,y=-0.25*extent,z=0
-	//this is where rocket lands
 	glTranslatef(0.0f, -(10.0 * extent + 0.25 * extent), 0.0f);
-	glColor4f(0.0f, 1.0f, 0.0f, 1.0f); //GRUEN
-	glutSolidSphere(10.0 * extent, 20, 20);
+
+	glBindTexture(GL_TEXTURE_2D, mars);
+	glEnable(GL_TEXTURE_2D);
+	glRotatef(90, 0, 0, 1);
+	GLUquadricObj* sphere = gluNewQuadric();
+	gluQuadricTexture(sphere, GL_TRUE);
+	gluSphere(sphere, 10.0 * extent, 20, 20);
+	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 
 	if (currentMode == IDLE_START) {
 		//Rakete zeichen
 		glTranslatef(_rocketHeightx, _rocketHeighty, 0.0f);
 		glRotatef(_rotAngley, 0.0f, 1.0f, 0.0f);
-		Rocket(extent, _ringAngle, _legAngle);
+		Rocket(extent, _ringAngle, _legAngle, ringTexture);
 		//Test:
 		cout << "IDLE_START" << endl;
 	} else if (currentMode == ROCKET_LANDING) {
 		//Rackete zeichnen
 		glTranslatef(_rocketHeightx, _rocketHeighty, 0.0f);
 		//glRotatef(_angle, 1.0f, 0.0f, 0.0f);
-		Rocket(extent, _ringAngle, _legAngle);
+		Rocket(extent, _ringAngle, _legAngle, ringTexture);
 		//Test:
 		cout << "Rackete landet bei " << _rocketHeightx << endl;
 	} else if (currentMode == IDLE_LANDING) {
 		//Rakete zeichen
 		glTranslatef(_rocketHeightx, _rocketHeighty, 0.0f);
 		glRotatef(_rotAngleLanding, 0.0f, 0.0f, 1.0f);
-		Rocket(extent, _ringAngle, _legAngle);
+		Rocket(extent, _ringAngle, _legAngle, ringTexture);
 		//Test:
 		cout << "IDLE_LANDING " << _rotAngleLanding << endl;
 	} else if (currentMode == ROCKET_STARTING) {
 		//Rackete zeichnen
 		glTranslatef(_rocketHeightx, _rocketHeighty, 0.0f);
 		//glRotatef(_angle, 1.0f, 0.0f, 0.0f);
-		Rocket(extent, _ringAngle, _legAngle);
+		Rocket(extent, _ringAngle, _legAngle, ringTexture);
 		//Test:
 		cout << "Rackete startet bei " << _rocketHeightx << endl;
 	}
