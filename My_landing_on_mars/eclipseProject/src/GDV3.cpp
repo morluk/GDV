@@ -42,7 +42,7 @@ void renderScene() {
 	glRotatef(90, 0, 0, 1);
 	GLUquadricObj* sphere = gluNewQuadric();
 	gluQuadricTexture(sphere, GL_TRUE);
-	gluSphere(sphere, 10.0 * extent, 20, 20);
+	gluSphere(sphere, 10.0 * extent, 60, 20);
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 
