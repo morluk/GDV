@@ -3,7 +3,7 @@
 #include "RingTop.h"
 
 /*
- * draws top of a 3 dimensional  squared ring, which is a ring drawn with a thick pen.
+ * models top of a 3 dimensional  squared ring, which is a ring drawn with a thick pen.
  * outer radius = extent, inner radius = 0.9 * extent
  * Ring lies in x-z plane.
  */

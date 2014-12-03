@@ -5,7 +5,7 @@
 #include "Ring.h"
 
 /*
- * draws Ring around origin with outer radius extent and inner radius 0.9 * extent.
+ * models Ring around origin with outer radius extent and inner radius 0.9 * extent.
  * height is 0.2 * extent. Up is y axis.
  */
 

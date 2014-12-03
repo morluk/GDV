@@ -1,7 +1,7 @@
 #ifndef GLOBAL
 #define GLOBAL
 
-GLfloat extent = 1.0; // Mass fuer die Ausdehnung des Modells
+GLfloat extent = 1.0; // extension of model
 
 #include "standards.h"
 

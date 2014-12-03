@@ -7,8 +7,7 @@
 #include "Cube.h"
 
 /*
- * draws rocket around origin in x-z plane with lower radius 0.375 * extent and top radius 0.025 * extent
- * height is extent. Up is pos y axis.
+ * models rocket around origin in x-z plane with lower radius 0.375 * extent and top radius 0.025 * * extent. height is extent. Up is pos y axis.
  */
 
 void Rocket(GLfloat KL, GLfloat ringAngle, GLfloat legAngle, GLuint ringTexture) {

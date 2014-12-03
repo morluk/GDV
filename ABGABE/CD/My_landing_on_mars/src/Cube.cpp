@@ -2,7 +2,7 @@
 #include "Cube.h"
 
 /**
- * draws squared cube around origin with width = height = fLength. center of cube is origin.
+ * models squared cube around origin with width = height = fLength. center of cube is origin.
  */
 
 void Cube( GLfloat fLength ) {

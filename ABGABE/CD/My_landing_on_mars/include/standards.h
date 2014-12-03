@@ -19,17 +19,15 @@ const int TIMER_ARRAY[4] = {2000, 5000, 2000, 5000};
 const int TIMER_ARRAY_LENGTH = 4;
 
 //camera standards
-//TODO: uebersetzen :D
-//das sind die camera arrays. die haengen zusammen mit den modes. die reihenfolge ist:
+//correspond to enum Mode. Order of array:
 //start camera position
-//position sobald die rakete anfaengt zu landen
-//position wenn rakete gelandet ist
-//wenn rakete wieder anfaengt zu starten
-//wenn rakete fertig
+//position start landing sequence
+//position rocket has landed
+//position rocket starting
+//position start sequence finished
 
-//destor kuerzer ein mode dauert desto schneller wechselt die kamera zur naechsten sicht.
-//somit haben wir hier freie auswahl und es ist einfach, falls mal ein mode hinzukommt.
-//die kamera einstellungen fand ich so mal ganz gut. koennen aber ja auch mal noch andere testen
+//the shorter a mode is, the quicker the camera changes
+//so we have here free hand and can easily add modes
 const GLfloat cameraXarray[5] = {	0, 		0, 		-2, 	2,		5	};
 const GLfloat cameraYarray[5] = {	5, 		5, 		5, 		2,		2	};
 const GLfloat cameraZarray[5] = {	5, 		15, 	5, 		5,		15	};

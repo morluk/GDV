@@ -3,8 +3,7 @@
 #include "Circle.h"
 
 /*
- * zeichnet gefüllten Kreis um Ursprung mit radius = extent
- * in x-z Ebene. Orientierung der Normalen: 1.0 nach oben, -1.0 nach unten (um zu wissen wo aussen ist)
+ * models full cirlce around origin in x-z plane with radius = extent
  */
 
 void Circle(GLfloat extent) {

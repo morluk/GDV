@@ -3,8 +3,8 @@
 #include "Cone.h"
 
 /*
- * zeichnet Kegelstumpf in x-z Ebene um Ursprung mit unterem Radius = extent * proportion
- * und mit Höhe extent. Oberer Radius des Kegelstumpfs ist extent.
+ * models frustum in x-z plane around origin with lower radius = extent * proportion
+ * and height = extent. upper radius of frustum is extent.
  */
 
 void Cone(GLfloat extent, GLfloat proportion) {

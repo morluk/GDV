@@ -2,6 +2,11 @@
 #include <math.h>
 #include "RingSide.h"
 
+/*
+ * models side of Ring around origin with radius extent.
+ * height is extent. Up is y axis.
+ */
+
 void RingSide(GLfloat extent) {
 
 	float xpl[9], zpl[9];

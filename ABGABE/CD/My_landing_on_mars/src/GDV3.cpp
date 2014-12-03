@@ -7,6 +7,12 @@
 
 using namespace std;
 
+/**
+ * Entry point and sequence control structure of simulation
+ * 'MyLandingOnMars' from Lukas Koehler and Moritz Hilberg
+ * WS 14/15
+ */
+
 //cannot be placed in global.h Set currentMode for Start of Animation
 Mode currentMode = IDLE_START;
 
@@ -17,6 +23,7 @@ void init() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);	//BLACK
 	glEnable(GL_DEPTH_TEST);
 	glClearDepth(1.0f);
+	//load textures
 	mars = SOIL_load_OGL_texture("images/mars.jpg", SOIL_LOAD_AUTO,
 					SOIL_CREATE_NEW_ID,
 					SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB
@@ -31,12 +38,12 @@ void init() {
 void renderScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-
+	//position of camera
 	gluLookAt(_cameraX, _cameraY, _cameraZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
+	//modeling the planet
 	glPushMatrix();
 	glTranslatef(0.0f, -(10.0 * extent + 0.25 * extent), 0.0f);
-
 	glBindTexture(GL_TEXTURE_2D, mars);
 	glEnable(GL_TEXTURE_2D);
 	glRotatef(90, 0, 0, 1);
@@ -46,36 +53,30 @@ void renderScene() {
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 
+	//modeling the rocket according to current position
 	if (currentMode == IDLE_START) {
-		//Rakete zeichen
+		//rocket up in sky
 		glTranslatef(_rocketHeightx, _rocketHeighty, 0.0f);
 		glRotatef(_rotAngley, 0.0f, 1.0f, 0.0f);
 		Rocket(extent, _ringAngle, _legAngle, ringTexture);
-		//Test:
 		cout << "IDLE_START" << endl;
 	} else if (currentMode == ROCKET_LANDING) {
-		//Rackete zeichnen
+		//rocket is landing
 		glTranslatef(_rocketHeightx, _rocketHeighty, 0.0f);
-		//glRotatef(_angle, 1.0f, 0.0f, 0.0f);
 		Rocket(extent, _ringAngle, _legAngle, ringTexture);
-		//Test:
 		cout << "Rackete landet bei " << _rocketHeightx << endl;
 	} else if (currentMode == IDLE_LANDING) {
-		//Rakete zeichen
+		//rocket on planet surface
 		glTranslatef(_rocketHeightx, _rocketHeighty, 0.0f);
 		glRotatef(_rotAngleLanding, 0.0f, 0.0f, 1.0f);
 		Rocket(extent, _ringAngle, _legAngle, ringTexture);
-		//Test:
 		cout << "IDLE_LANDING " << _rotAngleLanding << endl;
 	} else if (currentMode == ROCKET_STARTING) {
-		//Rackete zeichnen
+		//rocket is starting
 		glTranslatef(_rocketHeightx, _rocketHeighty, 0.0f);
-		//glRotatef(_angle, 1.0f, 0.0f, 0.0f);
 		Rocket(extent, _ringAngle, _legAngle, ringTexture);
-		//Test:
 		cout << "Rackete startet bei " << _rocketHeightx << endl;
 	}
-	//Boden zeichnen
 	glutSwapBuffers();
 }
 
@@ -85,14 +86,13 @@ void reshape(int width, int height) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glViewport(0, 0, width, height);
-	//glFrustum(-extent*4.0,+extent*4.0,-extent*4.0,+extent*4.0,4.0*extent,+15.0*extent); //Frustum
-	//glOrtho(-extent*2.0,+extent*2.0,-extent*2.0,+extent*2.0,0.0,+20.0*extent); //Frustum
+	//adjust frustum
 	gluPerspective(45.0, (double) width / (double) height, 1.0, 200.0);
 	glMatrixMode(GL_MODELVIEW);
 }
 
 void animate(int value) {
-
+	//set values according to currentMode
 	if (currentMode == IDLE_START) {
 		_legAngle = 90.0;
 		_rocketHeightx = -5.0;
@@ -106,7 +106,6 @@ void animate(int value) {
 	}
 
 	if (currentMode == ROCKET_LANDING) {
-		//set values
 		if (_ringAngle > 360)
 			_ringAngle -= 360;
 		_ringAngle += 2.0f;
@@ -122,7 +121,6 @@ void animate(int value) {
 	}
 
 	if (currentMode == IDLE_LANDING) {
-		//set values
 		_legAngle = 0;
 		if (_rotAngley > 360)
 			_rotAngley -= 360;
@@ -139,7 +137,6 @@ void animate(int value) {
 	}
 
 	if (currentMode == ROCKET_STARTING) {
-		//set values
 		if (_rotAngley > 360)
 			_rotAngley -= 360;
 		_rotAngley += 1.0f;
@@ -155,6 +152,8 @@ void animate(int value) {
 	}
 
 	glutPostRedisplay();
+	
+	//if value == 0 change to next mode, else decrement value and call glutTimerFunc
 	if (value == 0) {
 		//change currentMode to next Mode type
 		currentMode = (Mode) ((((int) currentMode) + 1) % TIMER_ARRAY_LENGTH);
@@ -168,7 +167,7 @@ void animate(int value) {
 	} else {
 		glutTimerFunc(ANIMATE_WAIT_MSEC, animate, --value);
 
-		//subtract calculated value in front of the next mode from camery parameters
+		//subtract calculated value before the next mode from camery parameters
 		_cameraX -= (cameraXarray[currentMode] - cameraXarray[currentMode + 1])
 				/ (TIMER_ARRAY[currentMode] / 10);
 		_cameraY -= (cameraYarray[currentMode] - cameraYarray[currentMode + 1])
