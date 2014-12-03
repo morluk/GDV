@@ -1,0 +1,1 @@
+void RingSide( GLfloat extent );
